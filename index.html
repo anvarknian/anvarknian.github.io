@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anwar Knyane — Software Engineer, Data & AI</title>
+  <meta name="description" content="Portfolio of Anwar Knyane">
+  <meta property="og:title" content="Anwar Knyane — Software Engineer, Data & AI">
+  <meta property="og:description" content="Portfolio of Anwar Knyane">
+  <meta property="og:image" content="https://anvarknian.github.io/resources/picture.png">
+  <meta property="og:url" content="https://anvarknian.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://anvarknian.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --bg: #06080f;
+      --surface: #0c1120;
+      --card: #111827;
+      --card2: #151d30;
+      --border: rgba(255, 255, 255, .06);
+      --accent: #22d3ee;
+      --accent2: #a78bfa;
+      --accent3: #f472b6;
+      --text: #cbd5e1;
+      --muted: #94a3b8;
+      --white: #f1f5f9;
+      --grad: linear-gradient(135deg, #22d3ee, #a78bfa, #f472b6);
+      --grad2: linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%)
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all .3s
+    }
+
+    a:hover {
+      color: var(--accent2)
+    }
+
+    ::selection {
+      background: rgba(34, 211, 238, .2);
+      color: var(--white)
+    }
+
+    /* NOISE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      backdrop-filter: blur(20px) saturate(1.6);
+      background: rgba(6, 8, 15, .7);
+      border-bottom: 1px solid var(--border);
+      padding: .9rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    nav .logo {
+      font-weight: 900;
+      font-size: 1.3rem;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -.02em
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem
+    }
+
+    nav ul a {
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: all .3s
+    }
+
+    nav ul a:hover {
+      color: var(--white)
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(34, 211, 238, .05), transparent), radial-gradient(ellipse 60% 50% at 80% 20%, rgba(167, 139, 250, .04), transparent), radial-gradient(ellipse 50% 40% at 20% 80%, rgba(244, 114, 182, .03), transparent)
+    }
+
+    /* MARQUEE WORDS */
+    .hero-words {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .marquee-row {
+      display: flex;
+      position: absolute;
+      white-space: nowrap;
+      will-change: transform
+    }
+
+    .marquee-row span {
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 0 2rem;
+      flex-shrink: 0
+    }
+
+    .m-r {
+      animation: mRight var(--dur) linear infinite
+    }
+
+    .m-l {
+      animation: mLeft var(--dur) linear infinite
+    }
+
+    @keyframes mRight {
+      0% {
+        transform: translateX(0)
+      }
+
+      100% {
+        transform: translateX(-50%)
+      }
+    }
+
+    @keyframes mLeft {
+      0% {
+        transform: translateX(-50%)
+      }
+
+      100% {
+        transform: translateX(0)
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px
+    }
+
+    .hero .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 2.5rem;
+      padding: 4px;
+      background: var(--grad);
+      box-shadow: 0 0 60px rgba(34, 211, 238, .15), 0 0 120px rgba(167, 139, 250, .08);
+      animation: pulse 4s ease-in-out infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 60px rgba(34, 211, 238, .15), 0 0 120px rgba(167, 139, 250, .08)
+      }
+
+      50% {
+        box-shadow: 0 0 80px rgba(34, 211, 238, .25), 0 0 160px rgba(167, 139, 250, .12)
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: .5rem;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -.03em;
+      line-height: 1.1
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -.01em
+    }
+
+    .hero .links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      padding: .75rem 2rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 600;
+      transition: all .35s;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      letter-spacing: .03em
+    }
+
+    .btn-primary {
+      background: var(--grad2);
+      color: var(--bg)
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(34, 211, 238, .25)
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: var(--text);
+      background: rgba(255, 255, 255, .03);
+      backdrop-filter: blur(8px)
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+      background: rgba(34, 211, 238, .05)
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2rem;
+      position: relative
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .75rem;
+      display: block
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      color: var(--white);
+      letter-spacing: -.02em;
+      line-height: 1.2
+    }
+
+    .section-title em {
+      font-style: normal;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 auto;
+      max-width: 960px
+    }
+
+    /* ABOUT */
+    .about-text {
+      color: var(--text);
+      font-size: 1.1rem;
+      line-height: 2;
+      max-width: 720px;
+      border-left: 2px solid;
+      border-image: var(--grad2) 1;
+      padding-left: 1.5rem
+    }
+
+    /* SKILLS */
+    .skills-section {
+      background: var(--surface)
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border)
+    }
+
+    .skill-card {
+      background: var(--card);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all .4s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity .4s
+    }
+
+    .skill-card:hover::before {
+      opacity: .04
+    }
+
+    .skill-card:hover {
+      transform: none
+    }
+
+    .skill-card .skill-icon {
+      font-size: 1.8rem;
+      margin-bottom: .75rem;
+      display: block
+    }
+
+    .skill-card h4 {
+      font-size: .85rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+      color: var(--white);
+      position: relative
+    }
+
+    .skill-card p {
+      font-size: .75rem;
+      color: var(--muted);
+      position: relative;
+      line-height: 1.6
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 3rem
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), var(--accent3), transparent)
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -3rem;
+      top: 6px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 20px rgba(34, 211, 238, .3);
+      transition: all .3s
+    }
+
+    .tl-item:hover::before {
+      background: var(--accent);
+      box-shadow: 0 0 30px rgba(34, 211, 238, .5)
+    }
+
+    .tl-item .date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: .4rem;
+      letter-spacing: .1em
+    }
+
+    .tl-item h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .2rem
+    }
+
+    .tl-item .company {
+      font-size: .9rem;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: .65rem
+    }
+
+    .tl-item ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem
+    }
+
+    .tl-item li {
+      font-size: .85rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.6
+    }
+
+    .tl-item li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: .7rem
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .edu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all .4s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .edu-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity .4s
+    }
+
+    .edu-card:hover {
+      border-color: rgba(167, 139, 250, .2);
+      transform: translateY(-3px)
+    }
+
+    .edu-card:hover::after {
+      opacity: 1
+    }
+
+    .edu-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .4rem;
+      line-height: 1.4
+    }
+
+    .edu-card .degree {
+      color: var(--accent2);
+      font-size: .85rem;
+      font-weight: 500
+    }
+
+    .edu-card .year {
+      color: var(--muted);
+      font-size: .75rem;
+      margin-top: .5rem;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    /* CERTIFICATIONS */
+    .cert-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+      transition: all .4s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+      text-decoration: none;
+      color: inherit
+    }
+
+    .cert-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity .4s
+    }
+
+    .cert-card:hover {
+      border-color: rgba(34, 211, 238, .2);
+      transform: translateY(-3px);
+      color: inherit
+    }
+
+    .cert-card:hover::after {
+      opacity: 1
+    }
+
+    .cert-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .5rem
+    }
+
+    .cert-card h3 .ext-icon {
+      font-size: .65rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: color .3s
+    }
+
+    .cert-card:hover h3 .ext-icon {
+      color: var(--accent)
+    }
+
+    .cert-card .issuer {
+      color: var(--accent2);
+      font-size: .8rem;
+      font-weight: 500
+    }
+
+    .cert-card .platform {
+      color: var(--muted);
+      font-size: .7rem;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    @media(max-width:768px) {
+      .cert-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* LANGUAGES */
+    .lang-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem
+    }
+
+    .lang-chip {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .7rem 1.5rem;
+      text-align: center;
+      transition: all .35s;
+      backdrop-filter: blur(8px)
+    }
+
+    .lang-chip:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(34, 211, 238, .08)
+    }
+
+    .lang-chip h4 {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--white);
+      display: inline
+    }
+
+    .lang-chip p {
+      font-size: .7rem;
+      color: var(--muted);
+      display: inline;
+      margin-left: .4rem
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--surface)
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .85rem 1.5rem;
+      font-size: .85rem;
+      color: var(--text);
+      transition: all .35s;
+      backdrop-filter: blur(8px)
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(34, 211, 238, .08)
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--muted);
+      font-size: .75rem;
+      border-top: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .05em
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .hero h1 {
+        font-size: 2.2rem
+      }
+
+      .hero .subtitle {
+        font-size: .9rem
+      }
+
+      nav ul {
+        gap: 1rem
+      }
+
+      nav ul a {
+        font-size: .7rem
+      }
+
+      section {
+        padding: 4rem 1.25rem
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .edu-grid {
+        grid-template-columns: 1fr
+      }
+
+      .marquee-row span {
+        padding: 0 1rem
+      }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+
+      *,
+      ::before,
+      ::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav aria-label="Main Navigation">
+    <div class="logo">AK.</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-words">
+        <div class="marquee-row m-r" style="top:4%;font-size:1.3rem;--dur:35s;color:rgba(34,211,238,.05)">
+          <span>Kubernetes · Docker · Terraform · AWS · Azure · GCP · Kubernetes · Docker · Terraform · AWS · Azure ·
+            GCP ·</span>
+          <span>Kubernetes · Docker · Terraform · AWS · Azure · GCP · Kubernetes · Docker · Terraform · AWS · Azure ·
+            GCP ·</span>
+        </div>
+        <div class="marquee-row m-l" style="top:16%;font-size:2.4rem;--dur:45s;color:rgba(167,139,250,.04)">
+          <span>Apache Spark · Kafka · Flink · Airflow · Databricks · Apache Spark · Kafka · Flink · Airflow ·
+            Databricks ·</span>
+          <span>Apache Spark · Kafka · Flink · Airflow · Databricks · Apache Spark · Kafka · Flink · Airflow ·
+            Databricks ·</span>
+        </div>
+        <div class="marquee-row m-r" style="top:28%;font-size:.95rem;--dur:30s;color:rgba(244,114,182,.05)">
+          <span>PostgreSQL · Redis · Snowflake · Neo4j · MongoDB · S3 · PostgreSQL · Redis · Snowflake · Neo4j · MongoDB
+            · S3 ·</span>
+          <span>PostgreSQL · Redis · Snowflake · Neo4j · MongoDB · S3 · PostgreSQL · Redis · Snowflake · Neo4j · MongoDB
+            · S3 ·</span>
+        </div>
+        <div class="marquee-row m-l" style="top:40%;font-size:3rem;--dur:50s;color:rgba(34,211,238,.03)">
+          <span>Machine Learning · Deep Learning · NLP · LLM · RAG · Machine Learning · Deep Learning · NLP · LLM · RAG
+            ·</span>
+          <span>Machine Learning · Deep Learning · NLP · LLM · RAG · Machine Learning · Deep Learning · NLP · LLM · RAG
+            ·</span>
+        </div>
+        <div class="marquee-row m-r" style="top:52%;font-size:1.1rem;--dur:32s;color:rgba(167,139,250,.04)">
+          <span>Python · Scala · SQL · Bash · FastAPI · React · Python · Scala · SQL · Bash · FastAPI · React ·</span>
+          <span>Python · Scala · SQL · Bash · FastAPI · React · Python · Scala · SQL · Bash · FastAPI · React ·</span>
+        </div>
+        <div class="marquee-row m-l" style="top:64%;font-size:1.8rem;--dur:40s;color:rgba(244,114,182,.03)">
+          <span>GenAI · RAG · Vector Embeddings · GenAI · RAG · Vector Embeddings ·</span>
+          <span>GenAI · RAG · Vector Embeddings · GenAI · RAG · Vector Embeddings ·</span>
+        </div>
+        <div class="marquee-row m-r" style="top:76%;font-size:2.6rem;--dur:48s;color:rgba(34,211,238,.03)">
+          <span>Data Pipeline · ETL · Streaming · Real-Time · Data Pipeline · ETL · Streaming · Real-Time ·</span>
+          <span>Data Pipeline · ETL · Streaming · Real-Time · Data Pipeline · ETL · Streaming · Real-Time ·</span>
+        </div>
+        <div class="marquee-row m-l" style="top:88%;font-size:1rem;--dur:28s;color:rgba(167,139,250,.05)">
+          <span>CI/CD · DevOps · MLOps · DataOps · Microservices · gRPC · CI/CD · DevOps · MLOps · DataOps ·
+            Microservices · gRPC ·</span>
+          <span>CI/CD · DevOps · MLOps · DataOps · Microservices · gRPC · CI/CD · DevOps · MLOps · DataOps ·
+            Microservices · gRPC ·</span>
+        </div>
+      </div>
+      <div class="hero-content">
+        <img class="avatar" src="resources/picture.png" alt="Anwar Knyane">
+        <h1>Anwar Knyane</h1>
+        <p class="subtitle">Software Engineer — Cloud · Data & AI · Databricks<br>📍 Buenos Aires, Argentina</p>
+        <div class="links">
+          <a href="https://github.com/anvarknian" target="_blank" class="btn btn-primary">GitHub</a>
+          <a href="https://www.linkedin.com/in/anvarknian" target="_blank" class="btn btn-outline">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <span class="section-label">// who I am</span>
+        <h2 class="section-title">Building data platforms<br>that <em>scale</em></h2>
+        <p class="about-text">Highly motivated Lead Data Engineer and Solution Architect with over 10 years of
+          experience in software development and big data ecosystems. Proven track record of pioneering methodologies,
+          optimizing software engineering processes, and crafting innovative solutions in FinTech, e-commerce, and
+          venture capital industries. Adept at leading cross-functional teams and leveraging advanced technologies to
+          drive business growth and operational efficiency.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills-section">
+      <div class="container">
+        <span class="section-label">// expertise</span>
+        <h2 class="section-title">Skills & <em>Technologies</em></h2>
+        <div class="skills-grid">
+          <div class="skill-card"><span class="skill-icon">☁️</span>
+            <h4>Cloud & Infra</h4>
+            <p>AWS · Azure · Terraform · Kubernetes · Docker</p>
+          </div>
+          <div class="skill-card"><span class="skill-icon">⚡</span>
+            <h4>Data Engineering</h4>
+            <p>Spark · Kafka · Flink · Airflow · Databricks</p>
+          </div>
+          <div class="skill-card"><span class="skill-icon">🧠</span>
+            <h4>AI / ML</h4>
+            <p>LLM · RAG · NLP · GenAI </p>
+          </div>
+          <div class="skill-card"><span class="skill-icon">🗄️</span>
+            <h4>Databases</h4>
+            <p>PostgreSQL · Snowflake · Redis · Neo4j · S3 · Delta Lake · Unity Catalog</p>
+          </div>
+          <div class="skill-card"><span class="skill-icon">💻</span>
+            <h4>Languages</h4>
+            <p>Python · Scala · SQL · Bash</p>
+          </div>
+          <div class="skill-card"><span class="skill-icon">🔄</span>
+            <h4>DevOps / MLOps</h4>
+            <p>CI/CD · DataOps · Monitoring</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        <span class="section-label">// career path</span>
+        <h2 class="section-title">Professional <em>Experience</em></h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="date">APR 2026 — PRESENT</div>
+            <h3>Vice President - Lead Software Engineer</h3>
+            <div class="company">JPMorganChase</div>
+            <ul>
+              <li>Lead initiatives to improve enterprise data quality, consistency, and governance across distributed
+                data platforms, reducing reporting discrepancies and increasing reliability of business-critical
+                datasets.</li>
+              <li>Design and optimize scalable ETL and analytics solutions using Databricks and AWS to support
+                regulatory, operational, and business intelligence workloads.</li>
+              <li>Manage release planning and deployment processes for data platform enhancements, ensuring smooth
+                production rollouts, platform stability, and compliance with enterprise change management standards.
+              </li>
+              <li>Implement AI-driven solutions leveraging Generative AI, LLMs, and predictive analytics within
+                Databricks and AWS to improve operational efficiency, data validation, and internal knowledge discovery.
+              </li>
+              <li>Collaborate with cross-functional teams including engineering, product, risk, and operations to
+                deliver scalable data solutions aligned with business and regulatory requirements.</li>
+              <li>Develop automated data quality monitoring frameworks, testing and validation rules, and observability dashboards,
+                significantly reducing manual reconciliation efforts and production incidents.</li>
+              <li>Contribute to modernization of enterprise data architecture and AI adoption strategy by evaluating and
+                implementing advanced Databricks, AWS, and AI-assisted analytics solutions.</li>
+              <li>Improve CI/CD and release processes for data and AI applications, accelerating delivery cycles while
+                maintaining high standards for testing, security, and reliability.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="date">MAR 2025 — AUG 2025</div>
+            <h3>Senior Data Engineer</h3>
+            <div class="company">Mobile Computing — A Grid Dynamics Company</div>
+            <ul>
+              <li>Designed and deployed large-scale cloud-native data platform on AWS using Terraform, ensuring high availability and scalability.</li>
+              <li>Built real-time data pipelines with Apache Kafka and Apache Flink to process IoT device telemetry and event streams at scale, alongside batch ETL with Apache Spark (Scala/Python).</li>
+              <li>Orchestrated workflows via Apache Airflow, integrating Snowflake, PostgreSQL, and Redis for analytics and caching.</li>
+              <li>Delivered interactive dashboards with Apache Superset, enabling self-service BI and real-time monitoring of IoT metrics.</li>
+              <li>Developed backend microservices with FastAPI, providing secure access to ML models and business data.</li>
+              <li>Leveraged Neo4j for graph-based analytics to model device relationships and dependencies across IoT
+                ecosystems.</li>
+              <li>Implemented DevOps practices for cost optimization, monitoring, and reliability improvements (~30% reduction in infrastructure costs).</li>
+              <li>Mentored engineers and led best practices in distributed systems, cloud engineering, IoT data management, and data platform architecture.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="date">FEB 2023 — FEB 2025</div>
+            <h3>Lead Software Engineer / Solutions Architect (CTO)</h3>
+            <div class="company">Wale.ai</div>
+            <ul>
+              <li>Responsible for Data Platform at Wale.ai, a data &amp; analytics service for the VC/PE ecosystem using
+                advanced AI architecture (ML, GenAI - LLM, RAG, Vector Store) to revolutionize startup sourcing.</li>
+              <li>Designed Data Platform architecture and implemented efficient data pipelines ensuring data quality and
+                consistency for predictive insights (Apache Spark, Databricks, Postgres, REST, Azure Synapse, Azure Data
+                Factory).</li>
+              <li>Integrated machine learning models (NLP, LLM, DL) into data pipelines for predictive insights and set
+                up DevOps/MLOps processes in place.</li>
+              <li>Tested and supported implementation of cutting-edge LLM tech, including RAG and multimodal approach
+                (text, speech/voice, image): OpenAI GPT-4 turbo, Whisper, Mistral/Mixtral, Llama.</li>
+              <li>Optimized cloud costs and ETL processes, achieving ~$100k USD in savings per year on computing and API
+                costs.</li>
+              <li>Acted as deputy CTO and supervised a team of 3 web developers, leading to successful launch of product
+                beta version.</li>
+              <li>Project was featured on the Data-driven Venture Capital (DDVC 2023) report among the top 20 leaders in
+                driving innovation in VC.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="date">MAY 2021 — JAN 2023</div>
+            <h3>Lead Data Engineer / Solutions Architect</h3>
+            <div class="company">Sberbank</div>
+            <ul>
+              <li>Led a team of 3 data engineers and managed multiple service providers, overseeing data platforms of
+                e-commerce marketplaces and delivery startups with a GMV exceeding $2 billion.</li>
+              <li>Designed and led implementation of a robust cloud data platform architecture supporting real-time and
+                streaming data pipelines, integrating data landscapes of 5 different business entities for 300k+ daily
+                orders (Apache Airflow, REST, PostgreSQL, Apache Spark, S3).</li>
+              <li>Implemented DataOps principles, enhancing data operations and development processes (go-to-market
+                speed for new data products increased by 50%, production errors decreased by 15%).</li>
+              <li>Supported the implementation of AI services, such as courier routing optimization and product card
+                matching, leading to more than $20M USD in savings and revenue increase.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="date">JUL 2019 — APR 2021</div>
+            <h3>Lead Data Engineer</h3>
+            <div class="company">VTB Bank</div>
+            <ul>
+              <li>Supervised two data engineering teams, totaling 30 members, as a cross-functional team leader on
+                mission-critical big data projects utilizing Apache Airflow, Apache Spark, Y. Cloud, Docker, Kubernetes,
+                and S3.</li>
+              <li>Automated deployment processes for key big data technologies, significantly enhancing operational
+                efficiency.</li>
+              <li>Authored comprehensive software documentation to facilitate knowledge transfer and streamline system
+                maintenance, leading to a 50% reduction in system crashes.</li>
+              <li>Engaged in R&amp;D initiatives during solution selection and architectural design phases, contributing
+                to innovative technological solutions.</li>
+              <li>Provided expert consultation and support to cross-functional teams, promoting collaborative
+                problem-solving and knowledge sharing.</li>
+              <li>Automated data uploads, resulting in a 30% reduction in risks associated with mortgages and loans,
+                while improving the accuracy of machine learning models by 300%.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="date">DEC 2016 — MAY 2019</div>
+            <h3>Senior Data Engineer</h3>
+            <div class="company">Sberbank-Technology</div>
+            <ul>
+              <li>Contributed to the design and development of a cutting-edge streaming infrastructure (Apache Kafka,
+                Apache Flink, Scala, Bash, ELK).</li>
+              <li>Ensured robust functionality through hands-on implementation and support.</li>
+              <li>Contributed to maintaining high code quality by writing and maintaining unit tests.</li>
+              <li>Actively participated in code review processes to uphold best practices and enhance collaborative
+                development.</li>
+              <li>Optimized Flink CEP workflows, significantly improving data throughput and reducing latency from
+                approximately 5 seconds to around 200 milliseconds.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EDUCATION -->
+    <section id="education" class="skills-section">
+      <div class="container">
+        <span class="section-label">// academic background</span>
+        <h2 class="section-title">Education</h2>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <h3>Moscow Institute of Physics and Technology (MIPT)</h3>
+            <div class="degree">Master's — Applied Mathematics and Computer Science</div>
+            <div class="year">2016 — 2018</div>
+          </div>
+          <div class="edu-card">
+            <h3>Novgorod State University (NovSU)</h3>
+            <div class="degree">Bachelor's — Nanotechnology</div>
+            <div class="year">2012 — 2016</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <div class="container">
+        <span class="section-label">// credentials</span>
+        <h2 class="section-title">Certifications & <em>Licenses</em></h2>
+        <div class="cert-grid">
+          <a class="cert-card"
+            href="https://www.credly.com/badges/267a3d64-6a2f-40f0-b06c-b3630f6cae13/linked_in_profile" target="_blank"
+            rel="noopener">
+            <h3>Google IT Automation with Python <span class="ext-icon">↗</span></h3>
+            <div class="issuer">Google</div>
+            <div class="platform">Credly · Professional Certificate</div>
+          </a>
+          <a class="cert-card"
+            href="https://www.coursera.org/account/accomplishments/specialization/certificate/4H75UAMZ4NGE"
+            target="_blank" rel="noopener">
+            <h3>Google IT Automation with Python <span class="ext-icon">↗</span></h3>
+            <div class="issuer">Google</div>
+            <div class="platform">Coursera · Specialization</div>
+          </a>
+          <a class="cert-card" href="https://www.coursera.org/account/accomplishments/certificate/3LGZ4PWLY2PT"
+            target="_blank" rel="noopener">
+            <h3>Big Data Analysis with Scala and Spark <span class="ext-icon">↗</span></h3>
+            <div class="issuer">EPFL</div>
+            <div class="platform">Coursera</div>
+          </a>
+          <a class="cert-card" href="https://www.coursera.org/account/accomplishments/verify/UHW6QVVFFJYW"
+            target="_blank" rel="noopener">
+            <h3>Functional Program Design in Scala <span class="ext-icon">↗</span></h3>
+            <div class="issuer">EPFL</div>
+            <div class="platform">Coursera</div>
+          </a>
+          <a class="cert-card" href="https://www.coursera.org/account/accomplishments/verify/DJS2VL2P8ABL"
+            target="_blank" rel="noopener">
+            <h3>Python Data Structures <span class="ext-icon">↗</span></h3>
+            <div class="issuer">University of Michigan</div>
+            <div class="platform">Coursera</div>
+          </a>
+          <a class="cert-card" href="https://www.coursera.org/account/accomplishments/certificate/DKZC7JJ5UCPJ"
+            target="_blank" rel="noopener">
+            <h3>HTML, CSS, and Javascript for Web Developers <span class="ext-icon">↗</span></h3>
+            <div class="issuer">Johns Hopkins University</div>
+            <div class="platform">Coursera</div>
+          </a>
+          <a class="cert-card" href="https://cert.efset.org/dTQPmv" target="_blank" rel="noopener">
+            <h3>EF SET English Certificate <span class="ext-icon">↗</span></h3>
+            <div class="issuer">EF Standard English Test</div>
+            <div class="platform">EF SET</div>
+          </a>
+          <a class="cert-card" href="https://stepik.org/cert/57728?lang=en" target="_blank" rel="noopener">
+            <h3>Programming in Python <span class="ext-icon">↗</span></h3>
+            <div class="issuer">Mail.ru Group</div>
+            <div class="platform">Stepik</div>
+          </a>
+          <div class="cert-card">
+            <h3>IELTS</h3>
+            <div class="issuer">British Council / IDP</div>
+            <div class="platform">English Language Certification</div>
+          </div>
+          <div class="cert-card">
+            <h3>TEF CANADA</h3>
+            <div class="issuer">CCI Paris Île-de-France</div>
+            <div class="platform">French Language Certification</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- LANGUAGES -->
+    <section>
+      <div class="container">
+        <span class="section-label">// languages I speak</span>
+        <h2 class="section-title">Languages</h2>
+        <div class="lang-grid">
+          <div class="lang-chip">
+            <h4>🇸🇦 Arabic</h4>
+            <p>— Native</p>
+          </div>
+          <div class="lang-chip">
+            <h4>🇷🇺 Russian</h4>
+            <p>— Native</p>
+          </div>
+          <div class="lang-chip">
+            <h4>🇫🇷 French</h4>
+            <p>— Native</p>
+          </div>
+          <div class="lang-chip">
+            <h4>🇬🇧 English</h4>
+            <p>— Professional</p>
+          </div>
+          <div class="lang-chip">
+            <h4>🇪🇸 Spanish</h4>
+            <p>— Elementary</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <span class="section-label">// get in touch</span>
+        <h2 class="section-title">Let's <em>connect</em></h2>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/anvarknian" target="_blank" class="contact-link">💼 LinkedIn</a>
+          <a href="https://github.com/anvarknian" target="_blank" class="contact-link">💻 GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Anwar Knyane</p>
+  </footer>
+
+</body>
+
+</html>
