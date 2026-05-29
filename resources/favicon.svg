@@ -41,9 +41,6 @@
     letter-spacing="-2"
     fill="url(#g)"
   >
-    AK
+    AK.
   </text>
-
-  <!-- dot -->
-  <circle cx="49" cy="43" r="2.5" fill="#22d3ee"/>
 </svg>
